@@ -42,8 +42,24 @@ void naive_rotate(int dim, pixel *src, pixel *dst)
 char rotate_descr[] = "rotate: Current working version";
 void rotate(int dim, pixel *src, pixel *dst) 
 {
-    naive_rotate(dim, src, dst);
+    int i, j, ii, jj, iii, jjj;
+    int block=32;//blocking the Matrix
+    for(i=0; i<dim; i+=block)
+    {
+        for(j=0; j<dim; j+=block)
+        {
+            //block*block mini matrix
+            for(ii=i; ii<i+block; ii++) 
+            {
+                for(jj=j; jj<j+block; jj++)
+                {
+                    dst[RIDX(dim-i-jj, ii, dim)] = src[RIDX(ii, jj, dim)];
+                }
+            }
+        }
+    }
 }
+        
 
 /*********************************************************************
  * register_rotate_functions - 通过为每一个测试函数调用add_rotate_function(),
