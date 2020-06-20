@@ -10,8 +10,8 @@
  * Please fill in the following team struct 
  */
 team_t team = {
-    "student_name",     /* 姓名 */
-    "student_id",  /* 学号 */
+    "王子烨",     /* 姓名 */
+    "SZ170210229",  /* 学号 */
 };
 
 /***************
