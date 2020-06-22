@@ -43,7 +43,7 @@ char rotate_descr[] = "rotate: Current working version";
 void rotate(int dim, pixel *src, pixel *dst) 
 {
     int i, j, ii, jj1, jj2;
-    int block=32;//blocking the Matrix
+    int block=16;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
         for(j=0; j<dim; j+=block)
