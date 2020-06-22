@@ -42,7 +42,7 @@ void naive_rotate(int dim, pixel *src, pixel *dst)
 char rotate_descr[] = "rotate: Current working version";
 void rotate(int dim, pixel *src, pixel *dst) 
 {
-    int i, j, ii, jj1, jj2, iii, jjj;
+    int i, j, ii, jj1, jj2;
     int block=32;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
@@ -53,11 +53,11 @@ void rotate(int dim, pixel *src, pixel *dst)
             {
                 for(jj1=j; jj1<j+block; jj1+=2)
                 {
-                    dst[(dim-1-jj1)*dim+ii] = src[(ii*dim)+jj1];
+                    dst[RIDX(dim-1-jj1, ii, dim)] = src[RIDX(ii, jj1, dim)];
                 }
                 for(jj2=j+1; jj2<j+block; jj2+=2)
                 {
-                    dst[(dim-1-jj2)*dim+ii] = src[(ii*dim)+jj2];
+                    dst[RIDX(dim-1-jj2, ii, dim)] = src[RIDX(ii, jj2, dim)];
                 }
             }
         }
