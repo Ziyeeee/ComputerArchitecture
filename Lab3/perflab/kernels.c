@@ -178,7 +178,6 @@ void smooth(int dim, pixel *src, pixel *dst)
 {
     int i, j, pos;
     pixel sub_sum[3];
-    pixel row_sum[3];
 
     // left_top
     dst[0].red = (src[0].red + src[1].red + src[dim].red + src[dim+1].red) >> 2;
@@ -378,8 +377,8 @@ void smooth(int dim, pixel *src, pixel *dst)
  *********************************************************************/
 
 void register_smooth_functions() {
-    add_smooth_function(&smooth, smooth_descr);
     add_smooth_function(&naive_smooth, naive_smooth_descr);
+    add_smooth_function(&smooth, smooth_descr);
     /* ... Register additional test functions here */
 }
 
