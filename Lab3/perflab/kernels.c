@@ -250,7 +250,7 @@ void smooth(int dim, pixel *src, pixel *dst)
     dst[dim*dim-dim+1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
     dst[dim*dim-dim+1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
 
-    for(i=dim*dim-dim+2; i<dim*dim-1; ++i)
+    for(i=dim*dim-dim+2; i<dim*dim-1; i++)
     {
         ii = i+1;
         sub_sum[0]=sub_sum[1];
