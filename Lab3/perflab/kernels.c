@@ -43,61 +43,60 @@ char rotate_descr[] = "rotate: Current working version";
 void rotate(int dim, pixel *src, pixel *dst) 
 {
     int i, j;
-    pixel* dstPos;
-    pixel* srcPos;
-    int block=16;//blocking the Matrix
+    int dstPos, srcPos;
+    int block=32;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
         for(j=0; j<dim; ++j)
         {
-            dstPos = &(dst[(dim-1-j)*dim+i]);
-            srcPos = &(src[i*dim+j]);
-            *dstPos = *srcPos;
+            dstPos = (dim-1-j)*dim+i;
+            srcPos = i*dim+j;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
-            *dstPos = *srcPos;
+            dst[dstPos] = src[srcPos];
         }
     }
 }
