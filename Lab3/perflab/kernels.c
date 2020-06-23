@@ -50,18 +50,16 @@ void rotate(int dim, pixel *src, pixel *dst)
         for(j=0; j<dim; j+=block)
         {
             //block*block mini matrix
-            dstPos = RIDX(dim-1-j, i, dim);
-            srcPos = RIDX(i, j, dim);
             for(ii=i; ii<i+block; ii++) 
             {
+                dstPos = RIDX(dim-1-j, ii, dim);
+                srcPos = RIDX(ii, j, dim);
                 for(jj=j; jj<j+block; jj++)
                 {
                     dst[dstPos] = src[srcPos];
                     dstPos -= dim;
                     ++srcPos;
                 }
-                ++dstPos;
-                srcPos += dim;
             }
         }
     }
