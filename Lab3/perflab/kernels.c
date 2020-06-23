@@ -50,7 +50,7 @@ void rotate(int dim, pixel *src, pixel *dst)
     {
         for(j=0; j<dim; ++j)
         {
-            dstPos = &(dst[dim-1-j)*dim+i]);
+            dstPos = &(dst[(dim-1-j)*dim+i]);
             srcPos = &(src[i*dim+j]);
             *dstPos = *srcPos;
             ++dstPos;
