@@ -278,7 +278,7 @@ static int check_smooth(int dim) {
     }
 
     if (err) {
-	printf("\n");
+	printf("%d\n", err);
 	printf("ERROR: Dimension=%d, %d errors\n", dim, err);    
 	printf("E.g., \n");
 	printf("You have dst[%d][%d].{red,green,blue} = {%d,%d,%d}\n",
