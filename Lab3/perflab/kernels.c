@@ -89,12 +89,19 @@ void register_rotate_functions()
  **************************************************************/
 
 /* A struct used to compute averaged pixel value */
+
 typedef struct {
     int red;
     int green;
     int blue;
     int num;
 } pixel_sum;
+
+typedef struct {
+    int red;
+    int green;
+    int blue;
+} pixel_sub_sum;
 
 /* Compute min and max of two integers, respectively */
 static int min(int a, int b) { return (a < b ? a : b); }
@@ -178,7 +185,7 @@ void smooth(int dim, pixel *src, pixel *dst)
 {
     int i, j;
     int ii, jj;
-    pixel sub_sum[3];
+    pixel_sub_sum sub_sum[3];
 
     // left_top
     dst[0].red = (src[0].red + src[1].red + src[dim].red + src[dim+1].red) >> 2;
