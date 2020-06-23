@@ -42,25 +42,66 @@ void naive_rotate(int dim, pixel *src, pixel *dst)
 char rotate_descr[] = "rotate: Current working version";
 void rotate(int dim, pixel *src, pixel *dst) 
 {
-    int i, j, ii, jj;
+    int i, j, ii, iii;
     int dstPos, srcPos;
     int block=16;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
         for(j=0; j<dim; j+=block)
         {
-            //block*block mini matrix
-            for(ii=i; ii<i+block; ii++) 
+            for(ii=0; ii<block; ++ii)
             {
-                dstPos = RIDX(dim-1-j, ii, dim);
-                srcPos = RIDX(ii, j, dim);
-                for(jj=j; jj<j+block; jj++)
-                {
-                    dst[dstPos] = src[srcPos];
-                    dstPos -= dim;
-                    ++srcPos;
-                }
+                iii = i + ii;
+                dstPos = (dim-1-j)*dim+iii;
+                srcPos = iii*dim+j;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
+                dstPos -= 64;
+                ++srcPos;
+                dst[dstPos] = src[srcPos];
             }
+            
         }
     }
 }
