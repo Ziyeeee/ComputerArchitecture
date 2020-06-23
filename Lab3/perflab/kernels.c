@@ -40,7 +40,7 @@ void naive_rotate(int dim, pixel *src, pixel *dst)
  * IMPORTANT: This is the version you will be graded on
  */
 char rotate_descr[] = "rotate: Current working version";
-void rotate_16(int dim, pixel *src, pixel *dst) 
+void rotate(int dim, pixel *src, pixel *dst) 
 {
     int i, j;
     int dstPos, srcPos;
@@ -220,7 +220,7 @@ void rotate_32(int dim, pixel *src, pixel *dst)
 void register_rotate_functions() 
 {
     add_rotate_function(&naive_rotate, naive_rotate_descr);   
-    add_rotate_function(&rotate_16, rotate_descr); 
+    add_rotate_function(&rotate, rotate_descr); 
     add_rotate_function(&rotate_32, rotate_descr);  
     /* ... Register additional test functions here */
 }
