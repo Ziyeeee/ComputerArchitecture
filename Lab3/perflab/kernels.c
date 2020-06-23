@@ -44,7 +44,7 @@ void rotate(int dim, pixel *src, pixel *dst)
 {
     int i, j;
     int dstPos, srcPos;
-    int block=32;//blocking the Matrix
+    int block=16;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
         for(j=0; j<dim; ++j)
