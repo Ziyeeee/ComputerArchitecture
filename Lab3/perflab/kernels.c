@@ -44,13 +44,64 @@ void rotate(int dim, pixel *src, pixel *dst)
 {
     int i, j;
     int dstPos, srcPos;
-    int block=16;//blocking the Matrix
+    int block=32;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
         for(j=0; j<dim; ++j)
         {
             dstPos = (dim-1-j)*dim+i;
             srcPos = i*dim+j;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
             dst[dstPos] = src[srcPos];
             ++dstPos;
             srcPos += dim;
