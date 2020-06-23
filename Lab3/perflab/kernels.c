@@ -101,116 +101,6 @@ void rotate(int dim, pixel *src, pixel *dst)
     }
 }
 
-void rotate_32(int dim, pixel *src, pixel *dst) 
-{
-    int i, j;
-    int dstPos, srcPos;
-    int block=16;//blocking the Matrix
-    for(i=0; i<dim; i+=block)
-    {
-        for(j=0; j<dim; ++j)
-        {
-            dstPos = (dim-1-j)*dim+i;
-            srcPos = i*dim+j;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-            ++dstPos;
-            srcPos += dim;
-            dst[dstPos] = src[srcPos];
-        }
-    }
-}
-        
-
 /*********************************************************************
  * register_rotate_functions - 通过为每一个测试函数调用add_rotate_function(),
  * 登记你所有不同版本的旋转代码到评测程序driver中，
@@ -220,8 +110,7 @@ void rotate_32(int dim, pixel *src, pixel *dst)
 void register_rotate_functions() 
 {
     add_rotate_function(&naive_rotate, naive_rotate_descr);   
-    add_rotate_function(&rotate, rotate_descr); 
-    add_rotate_function(&rotate_32, rotate_descr);  
+    add_rotate_function(&rotate, rotate_descr);  
     /* ... Register additional test functions here */
 }
 
