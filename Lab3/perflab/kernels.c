@@ -177,6 +177,7 @@ char smooth_descr[] = "smooth: Current working version";
 void smooth(int dim, pixel *src, pixel *dst) 
 {
     int i, j, pos;
+    int ii, jj;
     pixel sub_sum[3];
 
     // left_top
@@ -251,20 +252,17 @@ void smooth(int dim, pixel *src, pixel *dst)
 
     for(i=dim*dim-dim+2; i<dim*dim-1; ++i)
     {
-        ++i;
+        ii = i+1;
         sub_sum[0]=sub_sum[1];
         sub_sum[1]=sub_sum[2];
 
-        sub_sum[2].red = (src[i-dim].red + src[i].red);
-        sub_sum[2].green = (src[i-dim].green + src[i].green);
-        sub_sum[2].blue = (src[i-dim].blue + src[i].blue);
-        --i;
+        sub_sum[2].red = (src[ii-dim].red + src[ii].red);
+        sub_sum[2].green = (src[ii-dim].green + src[ii].green);
+        sub_sum[2].blue = (src[ii-dim].blue + src[ii].blue);
 
-        pos = i-1;
-
-        dst[pos].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-        dst[pos].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-        dst[pos].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+        dst[i].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+        dst[i].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+        dst[i].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
     }
 
     // left
