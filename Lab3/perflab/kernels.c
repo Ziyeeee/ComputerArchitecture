@@ -176,7 +176,7 @@ void naive_smooth(int dim, pixel *src, pixel *dst)
 char smooth_descr[] = "smooth: Current working version";
 void smooth(int dim, pixel *src, pixel *dst) 
 {
-    int i, j, pos;
+    int i, j;
     int ii, jj;
     pixel sub_sum[3];
 
@@ -212,25 +212,24 @@ void smooth(int dim, pixel *src, pixel *dst)
     sub_sum[2].red = (src[2].red + src[dim+2].red);
     sub_sum[2].green = (src[2].green + src[dim+2].green);
     sub_sum[2].blue = (src[2].blue + src[dim+2].blue);
-    
+
     dst[1].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
     dst[1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
     dst[1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
 
     for(i=2; i<dim-1; ++i)
     {
+        ii = i+1;
         sub_sum[0]=sub_sum[1];
         sub_sum[1]=sub_sum[2];
 
-        sub_sum[2].red = (src[i].red + src[dim+i].red);
-        sub_sum[2].green = (src[i].green + src[dim+i].green);
-        sub_sum[2].blue = (src[i].blue + src[dim+i].blue);
+        sub_sum[2].red = (src[ii].red + src[dim+ii].red);
+        sub_sum[2].green = (src[ii].green + src[dim+ii].green);
+        sub_sum[2].blue = (src[ii].blue + src[dim+ii].blue);
 
-        pos = i-1;
-
-        dst[pos].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-        dst[pos].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-        dst[pos].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+        dst[i].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+        dst[i].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+        dst[i].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
     }
 
     // bottom
@@ -245,12 +244,12 @@ void smooth(int dim, pixel *src, pixel *dst)
     sub_sum[2].red = (src[dim*dim-dim-dim+2].red + src[dim*dim-dim+2].red);
     sub_sum[2].green = (src[dim*dim-dim-dim+2].green + src[dim*dim-dim+2].green);
     sub_sum[2].blue = (src[dim*dim-dim-dim+2].blue + src[dim*dim-dim+2].blue);
-    
+
     dst[dim*dim-dim+1].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
     dst[dim*dim-dim+1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
     dst[dim*dim-dim+1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
 
-    for(i=dim*dim-dim+2; i<dim*dim-1; i++)
+    for(i=dim*dim-dim+2; i<dim*dim-1; ++i)
     {
         ii = i+1;
         sub_sum[0]=sub_sum[1];
@@ -277,25 +276,24 @@ void smooth(int dim, pixel *src, pixel *dst)
     sub_sum[2].red = (src[dim+dim].red + src[dim+dim+1].red);
     sub_sum[2].green = (src[dim+dim].green + src[dim+dim+1].green);
     sub_sum[2].blue = (src[dim+dim].blue + src[dim+dim+1].blue);
-    
-    dst[1].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-    dst[1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-    dst[1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
 
-    for(i=dim*3; i<dim*dim-1; i+=dim)
+    dst[dim].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+    dst[dim].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+    dst[dim].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+
+    for(i=dim*2; i<dim*dim-dim; i+=dim)
     {
+        ii = i+dim;
         sub_sum[0]=sub_sum[1];
         sub_sum[1]=sub_sum[2];
 
-        sub_sum[2].red = (src[i].red + src[i+1].red);
-        sub_sum[2].green = (src[i].green + src[i+1].green);
-        sub_sum[2].blue = (src[i].blue + src[i+1].blue);
+        sub_sum[2].red = (src[ii].red + src[ii+1].red);
+        sub_sum[2].green = (src[ii].green + src[ii+1].green);
+        sub_sum[2].blue = (src[ii].blue + src[ii+1].blue);
 
-        pos = i - dim;
-
-        dst[pos].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-        dst[pos].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-        dst[pos].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+        dst[i].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+        dst[i].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+        dst[i].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
     }
 
     // right
@@ -310,29 +308,28 @@ void smooth(int dim, pixel *src, pixel *dst)
     sub_sum[2].red = (src[dim*3-2].red + src[dim*3-1].red);
     sub_sum[2].green = (src[dim*3-2].green + src[dim*3-1].green);
     sub_sum[2].blue = (src[dim*3-2].blue + src[dim*3-1].blue);
-    
-    dst[1].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-    dst[1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-    dst[1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
 
-    for(i=dim*4-1; i<dim*dim-1; i+=dim)
+    dst[dim+dim-1].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+    dst[dim+dim-1].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+    dst[dim+dim-1].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+
+    for(i=dim*3-1; i<dim*dim-1; i+=dim)
     {
+        ii = i+dim;
         sub_sum[0]=sub_sum[1];
         sub_sum[1]=sub_sum[2];
 
-        sub_sum[2].red = (src[i-1].red + src[i].red);
-        sub_sum[2].green = (src[i-1].green + src[i].green);
-        sub_sum[2].blue = (src[i-1].blue + src[i].blue);
+        sub_sum[2].red = (src[ii-1].red + src[ii].red);
+        sub_sum[2].green = (src[ii-1].green + src[ii].green);
+        sub_sum[2].blue = (src[ii-1].blue + src[ii].blue);
 
-        pos = i - dim;
-
-        dst[pos].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
-        dst[pos].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
-        dst[pos].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
+        dst[i].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 6;
+        dst[i].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 6;
+        dst[i].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 6;
     }
 
     // other
-    for(i=1; i<dim-1; i++)
+    for(i=1; i<dim-1; ++i)
     {
         j = 1;
         sub_sum[0].red = (src[(i-1)*dim].red+src[i*dim].red+src[(i+1)*dim].red);
@@ -353,17 +350,17 @@ void smooth(int dim, pixel *src, pixel *dst)
 
         for(j=2; j<dim-1; ++j)
         {
+            jj = j+1;
             sub_sum[0]=sub_sum[1];
             sub_sum[1]=sub_sum[2];
 
-            sub_sum[2].red = (src[(i-1)*dim+j].red+src[i*dim+j].red+src[(i+1)*dim+j].red);
-            sub_sum[2].red = (src[(i-1)*dim+j].red+src[i*dim+j].red+src[(i+1)*dim+j].red);
-            sub_sum[2].red = (src[(i-1)*dim+j].red+src[i*dim+j].red+src[(i+1)*dim+j].red);
+            sub_sum[2].red = (src[(i-1)*dim+jj].red+src[i*dim+jj].red+src[(i+1)*dim+jj].red);
+            sub_sum[2].green = (src[(i-1)*dim+jj].green+src[i*dim+jj].green+src[(i+1)*dim+jj].green);
+            sub_sum[2].blue = (src[(i-1)*dim+jj].blue+src[i*dim+jj].blue+src[(i+1)*dim+jj].blue);
 
-            pos = j-1;
-            dst[i*dim+pos].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 9;
-            dst[i*dim+pos].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 9;
-            dst[i*dim+pos].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 9;
+            dst[i*dim+j].red = (sub_sum[0].red+sub_sum[1].red+sub_sum[2].red) / 9;
+            dst[i*dim+j].green = (sub_sum[0].green+sub_sum[1].green+sub_sum[2].green) / 9;
+            dst[i*dim+j].blue = (sub_sum[0].blue+sub_sum[1].blue+sub_sum[2].blue) / 9;
         }
     }
 }
