@@ -47,61 +47,56 @@ void rotate(int dim, pixel *src, pixel *dst)
     int block=16;//blocking the Matrix
     for(i=0; i<dim; i+=block)
     {
-        for(j=0; j<dim; j+=block)
+        for(j=0; j<dim; ++j)
         {
-            for(ii=0; ii<block; ++ii)
-            {
-                iii = i + ii;
-                dstPos = (dim-1-j)*dim+iii;
-                srcPos = iii*dim+j;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-                dstPos -= dim;
-                ++srcPos;
-                dst[dstPos] = src[srcPos];
-            }
-            
+            dstPos = (dim-1-j)*dim+i;
+            srcPos = i*dim+j;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
+            ++dstPos;
+            srcPos += dim;
+            dst[dstPos] = src[srcPos];
         }
     }
 }
